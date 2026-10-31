@@ -38,7 +38,7 @@ export default function SampleButton({ onAudio, disabled, loaded }: Props) {
       type="button"
       onClick={load}
       disabled={disabled || state === "loading" || state === "ready"}
-      className="rounded-full bg-[#EDF3F6] px-3 py-1 text-xs font-medium text-[#04597B] transition hover:bg-[#DDEAF0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D83995]/60 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-[#0F3A4F] dark:text-[#9ADAF2] dark:hover:bg-[#14506B]"
+      className="rounded-sm border border-dashed border-[#1D1A16] px-3 py-1 font-serif italic text-xs font-medium text-[#E5442F] transition hover:bg-[#F9DDD5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5442F]/60 disabled:cursor-not-allowed disabled:opacity-60"
     >
       {state === "loading"
         ? "Loading sample…"

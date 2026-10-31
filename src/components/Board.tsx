@@ -58,7 +58,7 @@ function SourceChip({
       }}
       aria-label={ts ? `Jump to ${ts}` : `Show source sentence ${seg + 1}`}
       title={ts ? "Play from here" : "Show source sentence"}
-      className="shrink-0 rounded-full bg-black/[0.05] px-2 py-0.5 font-mono text-[10px] text-zinc-500 transition hover:bg-[#DEF0F7] hover:text-[#04597B] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D83995]/60 dark:bg-white/10 dark:text-zinc-400 dark:hover:bg-[#0F3A4F] dark:hover:text-[#9ADAF2]"
+      className="shrink-0 px-1 py-0.5 font-sans text-[11px] text-[#E5442F] transition hover:bg-[#F9DDD5] hover:text-[#E5442F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5442F]/60"
     >
       {label}
     </button>
@@ -72,23 +72,17 @@ type CellEdit = {
   draft: string;
 };
 
-const rowSel = "!border-[#D83995]/50 !bg-[#D83995]/[0.12] !shadow-[inset_3px_0_0_#D83995] dark:!bg-[#D83995]/20";
+const rowSel = "!border-l-[#E5442F] !bg-[#F9DDD5]";
 const pillBase =
-  "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium";
-const pillDue = `${pillBase} bg-black/[0.05] text-zinc-700 dark:bg-white/10 dark:text-zinc-200`;
-const pillUnassigned = `${pillBase} border border-dashed border-amber-400 bg-amber-50 text-amber-800 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-300`;
+  "inline-flex items-center gap-1 border-b-[1.5px] px-0.5 py-0.5 text-[12px]";
+const pillDue = `${pillBase} border-[#1D1A16] text-[#1D1A16]`;
+const pillUnassigned = `${pillBase} border-[#E5442F] font-medium text-[#E5442F]`;
 const delBtn =
-  "shrink-0 rounded-full px-1.5 text-sm leading-none text-zinc-400 hover:bg-black/10 hover:text-zinc-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D83995]/60 dark:hover:bg-white/15 dark:hover:text-zinc-200";
+  "shrink-0 rounded-sm px-1.5 text-sm leading-none text-stone-500 hover:bg-black/10 hover:text-[#1D1A16] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5442F]/60";
 const itemCard =
-  "group flex items-start gap-3 rounded-2xl border border-black/[0.06] bg-white px-4 py-3 text-[14px] shadow-[0_4px_20px_-10px_rgba(10,37,51,0.15)] transition-colors hover:border-[#D83995]/30 dark:border-white/10 dark:bg-[#0B2230]";
+  "group flex items-start gap-3 border-l-2 border-t border-l-transparent border-t-[#1D1A16]/30 px-3 py-3 font-serif text-[17px] transition-colors";
 
-const AVATAR = [
-  "bg-[#DEF0F7] text-[#04597B] dark:bg-[#0F3A4F] dark:text-[#9ADAF2]",
-  "bg-[#CFE9F5] text-[#04597B] dark:bg-[#14506B] dark:text-[#CDEBF7]",
-  "bg-[#EDF3F6] text-[#04597B] dark:bg-[#12384C] dark:text-[#9ADAF2]",
-  "bg-[#dcf5e4] text-[#25663d] dark:bg-[#1d3326] dark:text-[#a6e3bb]",
-  "bg-[#ffe0ec] text-[#8a2b55] dark:bg-[#3a2230] dark:text-[#f5b0cc]",
-];
+const AVATAR = ["border-[1.5px] border-[#1D1A16] text-[#1D1A16]"];
 
 function Avatar({ name }: { name: string }) {
   let h = 0;
@@ -183,7 +177,7 @@ export default function Board({
         if (e.key === "Escape") cancelEdit();
       }}
       onBlur={commitEdit}
-      className="w-full min-w-0 rounded-full border border-[#D83995] bg-white px-3 py-1 text-[13px] text-zinc-900 outline-none ring-2 ring-[#D83995]/25 dark:bg-[#04141C] dark:text-zinc-100"
+      className="w-full min-w-0 rounded-sm border border-[#E5442F] bg-[#FFFDF8] px-3 py-1 text-[13px] text-[#1D1A16] outline-none ring-2 ring-[#E5442F]/25"
     />
     );
   };
@@ -215,10 +209,9 @@ export default function Board({
   const headline = [meta.title ?? "Decision board", dateLabel].filter(Boolean).join(" · ");
 
   const heading = (dot: string, text: string, count: number): ReactNode => (
-    <h2 className={sectionHeading}>
-      <i className={`inline-block h-2.5 w-2.5 rounded-full ${dot}`} aria-hidden />
-      {text}
-      <span className="font-sans text-xs text-zinc-400 dark:text-zinc-500">{count}</span>
+    <h2 className={sectionHeading} data-x>
+      <span className="squig font-sans text-[11px] font-semibold uppercase tracking-[0.2em]" data-dot={dot}>{text}</span>
+      <span className="font-sans text-xs text-stone-500">{count}</span>
     </h2>
   );
 
@@ -235,7 +228,7 @@ export default function Board({
       </div>
     ) : (
       <span
-        className={`min-w-0 flex-1 leading-snug text-zinc-800 dark:text-zinc-100 ${editableCls}`}
+        className={`min-w-0 flex-1 leading-snug text-[#1D1A16] ${editableCls}`}
         onClick={() => startEdit(section, i, "text", value, seg)}
       >
         {value}
@@ -245,14 +238,14 @@ export default function Board({
   return (
     <div className="flex flex-col gap-7">
       <div>
-        <h2 className="font-serif text-[34px] leading-[1.05] tracking-[-0.015em] text-zinc-900 sm:text-[44px] dark:text-zinc-50">
+        <h2 className="border-b-[3px] border-double border-[#1D1A16] pb-3 font-serif text-[34px] leading-[1.05] tracking-[-0.02em] text-[#1D1A16] sm:text-[52px]">
           {headline}
         </h2>
         {metaBits.length > 0 && (
-          <span className="mt-2 block text-xs text-zinc-500 dark:text-zinc-400">{metaBits.join(" · ")}</span>
+          <span className="mt-2 block text-xs text-stone-500">{metaBits.join(" · ")}</span>
         )}
         {extracted.summary && (
-          <p className="fade-in mt-3 max-w-2xl text-[15px] leading-7 text-zinc-600 dark:text-zinc-300">
+          <p className="fade-in mt-3 max-w-2xl text-[15px] leading-7 text-stone-500">
             {extracted.summary}
           </p>
         )}
@@ -264,7 +257,7 @@ export default function Board({
           <ul className="flex flex-col gap-2.5">
             {extracted.decisions.map((d, i) => (
               <li key={i} className={`${itemCard} ${isSel(d.seg) ? rowSel : ""}`}>
-                <span className="mt-px shrink-0 rounded-full bg-[#dcf5e4] px-2.5 py-0.5 text-[11px] font-semibold text-[#25663d] dark:bg-[#1d3326] dark:text-[#a6e3bb]">
+                <span className="mt-px shrink-0 rounded-sm font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1D1A16]">
                   Decided
                 </span>
                 {textCell("decisions", i, d.text, d.seg, "Edit decision")}
@@ -278,12 +271,12 @@ export default function Board({
             ))}
           </ul>
         ) : (
-          <p className="px-1 text-[13px] text-zinc-400 dark:text-zinc-500">No decisions captured.</p>
+          <p className="px-1 text-[13px] text-stone-500">No decisions captured.</p>
         )}
       </section>
 
       <section className="fade-in" style={{ animationDelay: "120ms" }}>
-        {heading("bg-[#0593C6]", "Actions", extracted.actions.length)}
+        {heading("bg-[#1D1A16]", "Actions", extracted.actions.length)}
         {extracted.actions.length ? (
           <ul className="flex flex-col gap-2.5">
             {extracted.actions.map((a, i) => (
@@ -297,7 +290,7 @@ export default function Board({
                   </div>
                 ) : (
                   <span
-                    className={`min-w-0 basis-full leading-snug text-zinc-800 sm:flex-1 sm:basis-0 dark:text-zinc-100 ${editableCls}`}
+                    className={`min-w-0 basis-full leading-snug text-[#1D1A16] sm:flex-1 sm:basis-0 ${editableCls}`}
                     onClick={() => startEdit("actions", i, "text", a.text, a.seg)}
                   >
                     {a.text}
@@ -313,7 +306,7 @@ export default function Board({
                     onClick={() => startEdit("actions", i, "owner", a.owner ?? "", a.seg)}
                   >
                     {a.owner ? (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-black/[0.04] py-0.5 pl-0.5 pr-2.5 text-[12px] font-medium text-zinc-700 dark:bg-white/[0.07] dark:text-zinc-200">
+                      <span className="inline-flex items-center gap-1.5 border-b-[1.5px] border-[#1D1A16] py-0.5 pl-0.5 pr-1.5 font-sans text-[12px] text-[#1D1A16]">
                         <Avatar name={a.owner} />
                         {a.owner}
                       </span>
@@ -346,7 +339,7 @@ export default function Board({
             ))}
           </ul>
         ) : (
-          <p className="px-1 text-[13px] text-zinc-400 dark:text-zinc-500">No actions captured.</p>
+          <p className="px-1 text-[13px] text-stone-500">No actions captured.</p>
         )}
       </section>
 
@@ -357,9 +350,9 @@ export default function Board({
             {extracted.openQuestions.map((q, i) => (
               <li
                 key={i}
-                className={`${itemCard} !border-[#0593C6]/30 !bg-[#0593C6]/[0.13] dark:!border-[#0593C6]/40 dark:!bg-[#0B2A3A] ${isSel(q.seg) ? rowSel : ""}`}
+                className={`${itemCard} ${isSel(q.seg) ? rowSel : ""}`}
               >
-                <span aria-hidden className="mt-px grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#DEF0F7] text-xs font-semibold text-[#04597B] dark:bg-[#0F3A4F] dark:text-[#9ADAF2]">
+                <span aria-hidden className="mt-px grid h-5 w-5 shrink-0 place-items-center font-serif italic text-base text-[#E5442F]">
                   ?
                 </span>
                 {textCell("questions", i, q.text, q.seg, "Edit question")}
@@ -373,24 +366,22 @@ export default function Board({
             ))}
           </ul>
         ) : (
-          <p className="px-1 text-[13px] text-zinc-400 dark:text-zinc-500">No open questions.</p>
+          <p className="px-1 text-[13px] text-stone-500">No open questions.</p>
         )}
       </section>
 
       {extracted.atRisk.length > 0 && (
         <section
-          className="fade-in rounded-3xl border border-[#D83995]/30 bg-[#D83995]/[0.12] p-5 dark:border-[#D83995]/40 dark:bg-[#D83995]/15"
+          className="fade-in border-t border-[#1D1A16]/30 pt-4"
           style={{ animationDelay: "360ms" }}
         >
-          <h2 className="mb-2 flex items-center gap-2 font-serif text-2xl text-[#8A1D5C] dark:text-[#F7B5D8]">
-            <i className="inline-block h-2.5 w-2.5 rounded-full bg-[#D83995]" aria-hidden />
-            At risk
+          <h2 className="mb-2 flex items-center gap-2"><span className="squig font-sans text-[11px] font-semibold uppercase tracking-[0.2em]">At risk</span>
             <span className="font-sans text-xs opacity-70">{extracted.atRisk.length}</span>
           </h2>
-          <ul className="flex flex-col gap-1.5 text-[14px] text-[#8A1D5C] dark:text-[#F7B5D8]">
+          <ul className="flex flex-col gap-1.5 text-[14px] text-[#1D1A16]">
             {extracted.atRisk.map((r, i) => (
               <li key={i} className="flex gap-2">
-                <span aria-hidden>⚑</span>
+                <span aria-hidden className="text-[#E5442F]">◆</span>
                 {r}
               </li>
             ))}

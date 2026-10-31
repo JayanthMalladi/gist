@@ -1,27 +1,22 @@
 @import "tailwindcss";
 
-/* Flow: sky + hot pink, serif display, aura gradient. */
+/* Paper: warm paper white, Fraunces serif, one tomato accent. Light only. */
 :root {
-  --background: #FCFFFF;
-  --foreground: #0A2533;
-  --aura-opacity: 0.55;
+  --background: #FBF8F2;
+  --foreground: #1D1A16;
+  --accent: #E5442F;
+  color-scheme: light;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #04141C;
-    --foreground: #EAF6FB;
-    --aura-opacity: 0.22;
-  }
-}
+::selection { background: #F7C9BF; color: #1D1A16; }
 
 body {
   background: var(--background);
@@ -66,79 +61,59 @@ body {
 @keyframes aura-c { to { transform: translate(-80px, -40px) scale(1.2); } }
 
 @keyframes ledger-in {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: none; }
 }
-@keyframes ledger-shimmer {
-  0% { background-position: -200px 0; }
-  100% { background-position: 200px 0; }
-}
 @keyframes ledger-flash {
-  0% { box-shadow: 0 0 0 0 rgb(216 57 149 / 0.5); }
-  100% { box-shadow: 0 0 0 10px rgb(216 57 149 / 0); }
+  0% { background-color: #F9D6CD; }
+  100% { background-color: transparent; }
 }
 @keyframes ledger-blink { 50% { opacity: 0; } }
 @keyframes wave {
   0%, 100% { transform: scaleY(0.25); }
   50% { transform: scaleY(1); }
 }
-@keyframes orb {
-  0%, 100% { transform: scale(1); filter: blur(0); }
-  50% { transform: scale(1.12); filter: blur(1px); }
-}
-@keyframes orb-ring {
-  0% { transform: scale(0.8); opacity: 0.6; }
-  100% { transform: scale(1.9); opacity: 0; }
-}
+@keyframes rule-grow { from { width: 15%; } to { width: 100%; } }
 
-.fade-in { animation: ledger-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.fade-in { animation: ledger-in 0.5s ease-out both; }
 .skel {
-  height: 12px;
-  border-radius: 9999px;
-  background: linear-gradient(90deg, #E3EEF2 0, #D3E3EA 50%, #E3EEF2 100%);
-  background-size: 400px 100%;
-  animation: ledger-shimmer 1.3s infinite linear;
+  height: 2px; background: #F0A99D; border-radius: 0;
+  animation: rule-grow 1.4s ease-in-out infinite alternate;
 }
 .flash { animation: ledger-flash 1.5s ease-out; }
 .caret {
-  display: inline-block; width: 2px; height: 1em; background: currentColor;
+  display: inline-block; width: 2px; height: 1em; background: var(--accent);
   vertical-align: -2px; animation: ledger-blink 1s steps(1) infinite;
 }
 
 .wave { display: inline-flex; align-items: center; gap: 3px; height: 24px; }
 .wave span {
-  display: block; width: 3px; height: 100%; border-radius: 9999px;
-  background: #5CC8F0; transform: scaleY(0.25); opacity: 0.45;
+  display: block; width: 2px; height: 100%; border-radius: 0;
+  background: var(--accent); transform: scaleY(0.25); opacity: 0.5;
   transform-origin: center;
 }
 .wave[data-active="true"] span { opacity: 1; animation: wave 0.9s ease-in-out infinite; }
 
-.orb {
-  position: relative; width: 84px; height: 84px; border-radius: 9999px;
-  background: radial-gradient(circle at 30% 30%, #fff 0, #7FD0EE 30%, #0593C6 60%, #D83995 100%);
-  box-shadow: 0 10px 50px rgba(216, 57, 149, 0.35);
-  animation: orb 2.6s ease-in-out infinite;
+/* Hand-drawn feel underline for headings. */
+.squig {
+  text-decoration: underline wavy var(--accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 6px;
+  text-decoration-skip-ink: none;
 }
-.orb::after {
-  content: ""; position: absolute; inset: 0; border-radius: 9999px;
-  border: 2px solid #D83995; animation: orb-ring 2.4s ease-out infinite;
+/* Notebook-ruled paper for the dictation box. */
+.ruled {
+  background-color: #FFFDF8;
+  background-image: repeating-linear-gradient(transparent 0 33px, #E6DFD2 33px 34px);
+  background-attachment: local;
+  line-height: 34px;
 }
+.orb, .orb::after { display: none; }
 
-@media (prefers-color-scheme: dark) {
-  .skel {
-    background: linear-gradient(90deg, #0B2230 0, #14384C 50%, #0B2230 100%);
-    background-size: 400px 100%;
-  }
-  .wave span { background: #F07AB8; }
-}
 @media (prefers-reduced-motion: reduce) {
-  .fade-in, .skel, .flash, .caret, .aura i, .orb, .orb::after,
-  .wave[data-active="true"] span {
-    animation: none;
-  }
+  .fade-in, .skel, .flash, .caret, .wave[data-active="true"] span { animation: none; }
   .wave[data-active="true"] span { transform: scaleY(0.6); }
 }
 @media print {
   body { background: #fff; color: #000; }
-  .aura { display: none; }
 }

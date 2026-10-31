@@ -119,22 +119,22 @@ export default function Recorder({ onAudio, onRecording, disabled }: Props) {
   }, [recording, seconds, stop]);
 
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-3xl bg-black/[0.03] px-5 py-6 dark:bg-white/[0.04]">
+    <div className="flex flex-wrap items-center gap-3 rounded-sm bg-black/[0.03] px-5 py-6">
       <button
         type="button"
         onClick={recording ? stop : start}
         disabled={disabled || (done && !recording)}
         aria-label={recording ? "Stop recording" : "Start recording"}
-        className={`flex h-14 w-14 items-center justify-center rounded-full text-white transition disabled:cursor-not-allowed disabled:opacity-40 ${
-          recording ? "animate-pulse bg-red-600 hover:bg-red-700" : "bg-[#0A2533] hover:bg-[#0A3A52] dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
+        className={`flex h-14 w-14 items-center justify-center rounded-sm text-white transition disabled:cursor-not-allowed disabled:opacity-40 ${
+          recording ? "animate-pulse bg-red-600 hover:bg-red-700" : "bg-[#E5442F] hover:bg-[#E5442F]"
         }`}
       >
-        {recording ? <span className="block h-4 w-4 rounded-sm bg-white" /> : <span className="block h-5 w-3 rounded-sm bg-white dark:bg-zinc-900" />}
+        {recording ? <span className="block h-4 w-4 rounded-sm bg-[#FFFDF8]" /> : <span className="block h-5 w-3 rounded-sm bg-[#FFFDF8]" />}
       </button>
-      <div className="font-serif text-xl text-zinc-600 dark:text-zinc-400">
+      <div className="font-serif text-xl text-stone-500">
         {done && !recording ? "Recording ready ✓" : recording ? `Recording… ${formatTs(seconds)}` : "Tap to record your recap (up to 15 min)"}
       </div>
-      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {error && <p className="text-sm text-red-600">{error}</p>}
     </div>
   );
 }

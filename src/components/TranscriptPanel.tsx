@@ -64,10 +64,10 @@ export default function TranscriptPanel({
   return (
     <section className={`${card} !p-4 flex min-h-0 flex-col gap-2`} aria-label="Transcript">
       <div className="flex items-baseline justify-between gap-2">
-        <h2 className={`${eyebrow} font-serif !text-xl !font-normal !normal-case !tracking-tight text-zinc-900 dark:!text-zinc-50`}>
+        <h2 className={`${eyebrow} font-serif !text-xl !font-normal !normal-case !tracking-tight text-[#1D1A16]`}>
           {title ?? "Transcript"}
         </h2>
-        <span className="text-[11px] text-zinc-400 dark:text-zinc-500">
+        <span className="text-[11px] text-stone-500">
           {caption ?? `${segments.length} ${segments.length === 1 ? "segment" : "segments"}`}
         </span>
       </div>
@@ -89,13 +89,13 @@ export default function TranscriptPanel({
                 data-selected={selected ? "true" : undefined}
                 aria-current={selected ? "true" : undefined}
                 onClick={() => onSelect(s.i)}
-                className={`flex cursor-pointer gap-2 rounded-xl px-2.5 py-1.5 text-[13px] leading-relaxed transition-colors ${
+                className={`flex cursor-pointer gap-2 rounded-sm px-2.5 py-1.5 text-[13px] leading-relaxed transition-colors ${
                   selected
-                    ? "bg-[#DEF0F7] text-[#04384F] shadow-[inset_3px_0_0_#D83995] dark:bg-[#0F3A4F] dark:text-[#EAF6FB]"
-                    : "text-zinc-600 hover:bg-black/[0.04] dark:text-zinc-300 dark:hover:bg-white/[0.06]"
+                    ? "border-l-2 border-[#E5442F] bg-[#F9DDD5] text-[#1D1A16]"
+                    : "border-l-2 border-transparent text-[#1D1A16]/80 hover:bg-black/[0.03]"
                 } ${flashing ? "flash" : ""}`}
               >
-                <span className="min-w-8 shrink-0 pt-0.5 font-mono text-[10px] text-zinc-400 dark:text-zinc-500">
+                <span className="min-w-8 shrink-0 pt-0.5 font-sans text-[10px] text-[#E5442F]">
                   {label}
                 </span>
                 <span>{s.text}</span>

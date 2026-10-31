@@ -57,7 +57,7 @@ export default function DictateInput({
     const el = textareaRef.current;
     if (!el) return;
     el.style.height = "auto";
-    el.style.height = `${Math.min(Math.max(el.scrollHeight, 160), 384)}px`;
+    el.style.height = `${Math.min(Math.max(el.scrollHeight, 170), 384)}px`;
   }, [value]);
 
   useEffect(
@@ -94,21 +94,21 @@ export default function DictateInput({
             }}
             onKeyDown={handleKeyDown}
             placeholder="Speak your recap. Who decided what, who's doing what by when, and what's still open…"
-            className="w-full resize-none rounded-2xl bg-transparent px-1 py-1 text-[17px] leading-relaxed text-zinc-900 placeholder:font-serif placeholder:text-[19px] placeholder:italic placeholder:text-zinc-400 focus:outline-none disabled:opacity-50 dark:text-zinc-50 dark:placeholder:text-zinc-500"
+            className="ruled w-full resize-none rounded-sm px-1 py-0 font-serif text-[21px] text-[#1D1A16] placeholder:font-serif placeholder:text-[19px] placeholder:italic placeholder:text-stone-500 focus:outline-none disabled:opacity-50"
             style={{ minHeight: 160 }}
           />
           {listening && (
             <span
               role="status"
-              className="pointer-events-none absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-[#DEF0F7] px-2.5 py-0.5 text-[11px] font-medium text-[#04597B] dark:bg-[#0F3A4F] dark:text-[#9ADAF2]"
+              className="pointer-events-none absolute right-2 top-2 inline-flex items-center gap-1 rounded-sm bg-[#F1EADC] px-2.5 py-0.5 text-[11px] font-medium text-[#E5442F]"
             >
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#D83995]" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-sm bg-[#E5442F]" />
               Listening via Wispr Flow
             </span>
           )}
         </div>
-        <div className="mt-1 text-right text-xs text-zinc-500 dark:text-zinc-400">
-          <span className={tooShort ? "text-amber-700 dark:text-amber-400" : ""}>
+        <div className="mt-1 text-right text-xs text-stone-500">
+          <span className={tooShort ? "text-amber-700" : ""}>
             {words} words
             {tooShort && ` · need ${MIN_WORDS}+, or try a sample`}
           </span>
@@ -123,13 +123,13 @@ export default function DictateInput({
               type="button"
               onClick={() => onSample(sample)}
               disabled={disabled}
-              className="rounded-full bg-[#DEF0F7] px-3 py-1 text-xs font-medium text-[#04597B] transition hover:bg-[#C6E6F3] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D83995]/60 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-[#0F3A4F] dark:text-[#9ADAF2] dark:hover:bg-[#352e55]"
+              className="rounded-sm border border-dashed border-[#1D1A16] px-3 py-1 text-xs font-medium text-[#E5442F] transition hover:bg-[#F9DDD5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5442F]/60 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Sample: {sample.label.toLowerCase()}
             </button>
           ))
         ) : (
-          <p className="text-xs text-zinc-400">No samples available.</p>
+          <p className="text-xs text-stone-500">No samples available.</p>
         )}
         {extraChips}
       </div>

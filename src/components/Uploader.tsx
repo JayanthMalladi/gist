@@ -51,12 +51,12 @@ export default function Uploader({ onAudio, disabled }: Props) {
             inputRef.current?.click();
           }
         }}
-        className={`rounded-3xl border border-dashed px-4 py-10 text-center text-[14px] text-zinc-600 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D83995]/60 dark:text-zinc-300 ${
+        className={`rounded-sm border border-dashed px-4 py-10 text-center text-[14px] text-stone-500 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5442F]/60 ${
           disabled
-            ? "cursor-not-allowed border-zinc-300 opacity-50 dark:border-zinc-700"
+            ? "cursor-not-allowed border-zinc-300 opacity-50"
             : dragging
-              ? "cursor-pointer border-[#D83995] bg-[#DEF0F7]/60 dark:bg-[#0F3A4F]/60"
-              : "cursor-pointer border-black/15 bg-black/[0.02] hover:border-[#D83995] dark:border-white/15 dark:bg-white/[0.03]"
+              ? "cursor-pointer border-[#E5442F] bg-[#F1EADC]/60"
+              : "cursor-pointer border-[#1D1A16]/25 bg-black/[0.02] hover:border-[#E5442F]"
         }`}
       >
         {name ? `Loaded ${name} · tap to replace` : "Drop a voice memo or tap to choose (webm, mp3, m4a, wav)"}
@@ -72,7 +72,7 @@ export default function Uploader({ onAudio, disabled }: Props) {
           e.target.value = "";
         }}
       />
-      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {error && <p className="text-sm text-red-600">{error}</p>}
     </div>
   );
 }
