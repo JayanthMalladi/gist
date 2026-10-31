@@ -61,10 +61,10 @@ export default function ShareCard({ shareUrl, truncated, onCopyMarkdown, onSlack
   return (
     <section className={`${card} flex flex-col gap-3`} aria-label="Share">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className={`${eyebrow} font-serif !text-2xl !font-normal !normal-case !tracking-tight text-zinc-900 dark:!text-zinc-50`}>
+        <h2 className={`${eyebrow} font-serif !text-2xl !font-normal !normal-case !tracking-tight text-[#1D1A16]`}>
           Share
         </h2>
-        <span className="text-xs text-zinc-400 dark:text-zinc-500">
+        <span className="text-xs text-stone-500">
           Anyone with the link can read this board.
         </span>
       </div>
@@ -72,7 +72,7 @@ export default function ShareCard({ shareUrl, truncated, onCopyMarkdown, onSlack
       {shareUrl ? (
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <span
-            className="block min-w-0 flex-1 truncate rounded-full border border-black/[0.06] bg-black/[0.03] px-4 py-2 font-mono text-xs text-zinc-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-400"
+            className="block min-w-0 flex-1 truncate rounded-sm border border-[#1D1A16]/25 bg-black/[0.03] px-4 py-2 font-mono text-xs text-stone-500"
             title={shareUrl}
           >
             {shareUrl.replace(/^https?:\/\//, "")}
@@ -90,17 +90,17 @@ export default function ShareCard({ shareUrl, truncated, onCopyMarkdown, onSlack
           </div>
         </div>
       ) : (
-        <p className="text-sm text-zinc-400 dark:text-zinc-500">Preparing link…</p>
+        <p className="text-sm text-stone-500">Preparing link…</p>
       )}
 
       {truncated && (
-        <p className="text-xs text-amber-700 dark:text-amber-400">
+        <p className="text-xs text-amber-700">
           Transcript shortened to fit the link.
         </p>
       )}
 
       <details className="group">
-        <summary className="cursor-pointer rounded text-xs text-zinc-500 hover:text-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D83995]/60 dark:hover:text-zinc-300">
+        <summary className="cursor-pointer rounded text-xs text-stone-500 hover:text-[#1D1A16] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5442F]/60">
           Post to Slack
         </summary>
         <div className="mt-2 flex flex-col gap-2">
@@ -114,7 +114,7 @@ export default function ShareCard({ shareUrl, truncated, onCopyMarkdown, onSlack
             placeholder="https://hooks.slack.com/services/..."
             className={field}
           />
-          {webhookHint && <p className="text-xs text-red-600 dark:text-red-400">{webhookHint}</p>}
+          {webhookHint && <p className="text-xs text-red-600">{webhookHint}</p>}
           <button type="button" onClick={post} disabled={!webhookValid} className={`${btnPrimary} self-start`}>
             Post
           </button>
@@ -122,8 +122,8 @@ export default function ShareCard({ shareUrl, truncated, onCopyMarkdown, onSlack
             <p
               className={
                 slackMsg.ok
-                  ? "text-sm text-[#D83995] dark:text-[#F07AB8]"
-                  : "text-sm text-red-600 dark:text-red-400"
+                  ? "text-sm text-[#E5442F]"
+                  : "text-sm text-red-600"
               }
             >
               {slackMsg.text}

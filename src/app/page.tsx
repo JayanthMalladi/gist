@@ -339,24 +339,19 @@ export default function Home() {
         >
           <div className={showResults ? "" : "w-full text-center"}>
             <div className={`flex items-center gap-2 ${showResults ? "" : "justify-center"}`}>
-              <span aria-hidden className="grid h-7 w-7 place-items-center rounded-full bg-[#0593C6]">
-                <span className="wave" data-active="false" style={{ height: 12, gap: 2 }}>
-                  <span style={{ width: 2, background: "#FCFFFF" }} />
-                  <span style={{ width: 2, background: "#FCFFFF" }} />
-                  <span style={{ width: 2, background: "#FCFFFF" }} />
-                </span>
+              <span aria-hidden className="grid h-3 w-3 place-items-center bg-[#E5442F]">
               </span>
-              <span className="text-[15px] font-semibold tracking-[-0.01em]">{BRAND.name}</span>
-              <span className="rounded-full bg-[#DEF0F7] px-2.5 py-0.5 text-[11px] font-medium text-[#04597B] dark:bg-[#0F3A4F] dark:text-[#9ADAF2]">
+              <span className="font-serif text-[16px] font-semibold tracking-[-0.01em]">{BRAND.name}</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#E5442F]">
                 Built for Wispr Flow
               </span>
             </div>
             {!showResults && (
               <>
-                <h1 className="mx-auto mt-8 max-w-3xl text-balance font-serif text-[44px] leading-[1.02] tracking-[-0.02em] text-[#0A2533] sm:text-[76px] dark:text-[#EAF6FB]">
-                  Say what happened. <em className="text-[#D83995] dark:text-[#F07AB8]">Get the board.</em>
+                <h1 className="mx-auto mt-8 max-w-3xl text-balance font-serif text-[44px] leading-[1.02] tracking-[-0.02em] text-[#1D1A16] sm:text-[88px]">
+                  Say what happened. <em className="squig text-[#E5442F]">Get the board.</em>
                 </h1>
-                <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-zinc-600 sm:text-base dark:text-zinc-400">
+                <p className="mx-auto mt-5 max-w-xl text-[15px] font-serif italic leading-relaxed text-stone-600 sm:text-xl">
                   Speak your meeting recap with Wispr Flow. {BRAND.name} turns it into decisions, owners and next steps.
                 </p>
               </>
@@ -423,7 +418,7 @@ export default function Home() {
                   disabled={inputsLocked}
                 />
                 {audioFile && (
-                  <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
+                  <span className="font-mono text-[11px] text-stone-500">
                     Ready: {audioFile.name}
                   </span>
                 )}
@@ -437,7 +432,7 @@ export default function Home() {
           </div>
 
           {/* Floating pill bar: waveform + hint + build */}
-          <div className="mt-4 flex items-center gap-3 rounded-full border border-black/[0.06] bg-[#FCFFFF] py-2 pl-5 pr-2 shadow-[0_6px_24px_-10px_rgba(10,37,51,0.25)] dark:border-white/10 dark:bg-[#04141C]">
+          <div className="mt-4 flex items-center gap-3 rounded-sm border border-[#1D1A16]/30 bg-transparent py-2 pl-1 pr-0 ">
             <span className="wave" data-active={dictating || recording ? "true" : "false"} aria-hidden>
               {Array.from({ length: 14 }, (_, i) => (
                 <span
@@ -449,17 +444,17 @@ export default function Home() {
                 />
               ))}
             </span>
-            <span className="min-w-0 flex-1 truncate text-[13px] text-zinc-500 dark:text-zinc-400">
+            <span className="min-w-0 flex-1 truncate text-[13px] text-stone-500">
               {recording ? "Recording…" : "Hold your Wispr Flow key and talk"}
             </span>
             <button
               type="button"
               onClick={build}
               disabled={!canBuild}
-              className="flex shrink-0 items-center gap-2 rounded-full bg-[#D83995] px-5 py-2.5 text-base font-bold text-[#1F0A16] transition hover:bg-[#E255A8] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D83995] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40"
+              className="flex shrink-0 items-center gap-2 rounded-sm bg-[#E5442F] px-5 py-2.5 text-base font-serif text-[17px] text-white transition hover:bg-[#C93724] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5442F] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40"
             >
               <span>{hasBoard ? "Rebuild board" : "Build board"}</span>
-              <kbd className={`${kbd} hidden !border-black/20 !bg-black/10 sm:inline`}>⌘↵</kbd>
+              <kbd className={`${kbd} hidden !border-[#1D1A16]/25 !bg-black/10 sm:inline`}>⌘↵</kbd>
             </button>
           </div>
         </section>
@@ -467,13 +462,13 @@ export default function Home() {
         {error && (
           <div
             role="alert"
-            className="flex items-center justify-between gap-3 rounded-2xl border border-red-300 bg-red-50 p-3 text-[13px] text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
+            className="flex items-center justify-between gap-3 rounded-sm border border-red-300 bg-red-50 p-3 text-[13px] text-red-800"
           >
             <span>{error}</span>
             <button
               type="button"
               onClick={build}
-              className="shrink-0 rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500/60"
+              className="shrink-0 rounded-sm bg-red-600 px-3 py-1 text-xs font-semibold text-white hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500/60"
             >
               Retry
             </button>
@@ -481,7 +476,7 @@ export default function Home() {
         )}
 
         {stale && (
-          <div className="flex items-center justify-between gap-3 rounded-2xl border border-amber-300 bg-amber-50 px-4 py-2.5 text-xs text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
+          <div className="flex items-center justify-between gap-3 rounded-sm border border-amber-300 bg-amber-50 px-4 py-2.5 text-xs text-amber-900">
             <span>Inputs changed, rebuild?</span>
             {!editing && (
               <button type="button" onClick={() => setEditing(true)} className="font-semibold underline">
@@ -498,8 +493,8 @@ export default function Home() {
               {busy ? (
                 <>
                   <div className="flex items-baseline justify-between">
-                    <h2 className="font-serif text-3xl tracking-tight">Building your <em>board…</em></h2>
-                    <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                    <h2 className="font-serif text-3xl italic tracking-tight">Building your board…</h2>
+                    <span className="font-mono text-xs text-stone-500">
                       {((now - buildStart) / 1000).toFixed(1)}s
                     </span>
                   </div>

@@ -29,7 +29,7 @@ export default function ContextForm({ value, onChange, disabled }: Props) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="rounded text-xs text-zinc-500 hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D83995]/60 dark:text-zinc-400 dark:hover:text-zinc-100"
+        className="rounded text-xs text-stone-500 hover:text-[#1D1A16] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5442F]/60"
         aria-expanded={open}
       >
         {open ? "▾" : "▸"} Add details (optional)

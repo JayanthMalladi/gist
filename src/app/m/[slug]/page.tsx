@@ -71,7 +71,7 @@ function ShareViewInner() {
       <div className={SHELL}>
         <div className={`${card} flex flex-col items-start gap-3`}>
           <h1 className="font-serif text-3xl">This link doesn&apos;t open</h1>
-          <p className="text-[13px] text-zinc-600 dark:text-zinc-400">
+          <p className="text-[13px] text-stone-500">
             It is malformed, cut off, or was made by an older version of {BRAND.name}.
           </p>
           <Link href="/" className={`${btnPrimary} print:hidden`}>
@@ -94,8 +94,8 @@ function ShareViewInner() {
       }`}
     >
       <header className="flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-2 text-[11px] text-zinc-500 dark:text-zinc-400">
-          <Link href="/" className="text-[15px] font-semibold tracking-[-0.01em] text-zinc-900 hover:underline dark:text-zinc-50">
+        <div className="flex items-center gap-2 text-[11px] text-stone-500">
+          <Link href="/" className="text-[15px] font-semibold tracking-[-0.01em] text-[#1D1A16] hover:underline">
             {BRAND.name}
           </Link>
           <span aria-hidden>·</span>
@@ -108,7 +108,7 @@ function ShareViewInner() {
           <button type="button" onClick={() => copy("md")} className={btnGhost}>
             {copied === "md" ? "Markdown copied ✓" : "Copy as Markdown"}
           </button>
-          <Link href="/" className={`${btnGhost} !border-transparent !bg-[#D83995] !font-bold !text-[#1F0A16] hover:!bg-[#E255A8]`}>
+          <Link href="/" className={`${btnGhost} !border-transparent !bg-[#E5442F] !font-bold !text-white hover:!bg-[#C93724]`}>
             Make your own board
           </Link>
         </div>
@@ -145,13 +145,13 @@ function ShareViewInner() {
               tall
             />
             {payload.transcript.truncated && (
-              <p className="text-xs text-zinc-400 dark:text-zinc-500">Transcript shortened to fit the link.</p>
+              <p className="text-xs text-stone-500">Transcript shortened to fit the link.</p>
             )}
           </aside>
         )}
       </div>
 
-      <footer className="mt-2 text-center text-[11px] text-zinc-400 dark:text-zinc-500">
+      <footer className="mt-2 text-center text-[11px] text-stone-500">
         Made with {BRAND.name} · spoken with Wispr Flow
       </footer>
     </div>

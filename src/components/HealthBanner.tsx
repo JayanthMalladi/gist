@@ -35,7 +35,7 @@ export default function HealthBanner({ onHealth }: Props) {
 
   if (health.hasKey) {
     return health.mock ? (
-      <span className="inline-flex w-fit rounded-full bg-black/[0.06] px-2.5 py-0.5 text-[11px] font-medium text-zinc-600 dark:bg-white/10 dark:text-zinc-300">
+      <span className="inline-flex w-fit text-[10px] uppercase tracking-[0.2em] text-stone-500">
         Mock mode
       </span>
     ) : null;
@@ -44,7 +44,7 @@ export default function HealthBanner({ onHealth }: Props) {
   return (
     <div
       role="alert"
-      className="flex flex-col gap-1.5 rounded-2xl border border-amber-300 bg-amber-50 p-3 text-[13px] text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200"
+      className="flex flex-col gap-1.5 rounded-sm border border-[#E5442F] p-3 text-[13px] text-[#1D1A16]"
     >
       <span>Add GROQ_API_KEY to enable processing.</span>
     </div>

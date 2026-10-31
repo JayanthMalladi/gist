@@ -51,7 +51,7 @@ export default function InputTabs({ active, onChange }: Props) {
   };
 
   return (
-    <div role="tablist" aria-label="Input source" className="mb-4 flex w-max max-w-full gap-1 rounded-full bg-black/[0.05] p-1 dark:bg-white/[0.07]" onKeyDown={onKeyDown}>
+    <div role="tablist" aria-label="Input source" className="mb-4 flex w-max max-w-full gap-5 border-b border-[#1D1A16]/25" onKeyDown={onKeyDown}>
       {TABS.map((tab, i) => {
         const isActive = tab.id === active;
         return (
@@ -66,8 +66,8 @@ export default function InputTabs({ active, onChange }: Props) {
             aria-selected={isActive}
             tabIndex={isActive ? 0 : -1}
             onClick={() => onChange(tab.id)}
-            className={`rounded-full px-4 py-1.5 text-[13px] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D83995]/60 ${
-              isActive ? "bg-white font-semibold text-zinc-900 shadow-sm dark:bg-[#12384C] dark:text-zinc-50" : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+            className={`px-0.5 py-1.5 text-[12px] uppercase tracking-[0.14em] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5442F]/60 ${
+              isActive ? "-mb-px border-b-2 border-[#E5442F] text-[#E5442F]" : "text-stone-500 hover:text-[#1D1A16]"
             }`}
           >
             {tab.label}
