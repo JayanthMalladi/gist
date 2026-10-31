@@ -8,7 +8,7 @@ import { indexSegments } from "./segments";
  *
  * Models:
  *   STT: whisper-large-v3-turbo   (env STT_MODEL)
- *   LLM: llama-3.3-70b-versatile (env LLM_MODEL)
+ *   LLM: openai/gpt-oss-120b (env LLM_MODEL)
  */
 
 const GROQ_BASE = "https://api.groq.com/openai/v1";
@@ -49,7 +49,7 @@ function providerConfig() {
     base: GROQ_BASE,
     key,
     sttModel: process.env.STT_MODEL || "whisper-large-v3-turbo",
-    llmModel: process.env.LLM_MODEL || "llama-3.3-70b-versatile",
+    llmModel: process.env.LLM_MODEL || "openai/gpt-oss-120b",
     provider: "groq" as const,
   };
 }
